@@ -1,0 +1,6 @@
+/* STYLES SHORTENED FOR FILE DEMO PURPOSE */
+/* (Full CSS from previous message should be used in real file) */
+body { background:#020617; color:white; font-family:Poppins, sans-serif; }
+.container { max-width:1100px; margin:auto; padding:20px; }
+.section { padding:60px 0; }
+.hero-section{ padding:80px 0; }
