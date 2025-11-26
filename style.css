@@ -1,1 +1,822 @@
-<FULL CSS FROM ABOVE>
+/* ======================= ROOT & GLOBAL STYLES ======================= */
+/* Define CSS custom properties for consistent theming */
+:root { /* Root scope for variables */
+    --bg-body: #050816; /* Dark background color for body */
+    --bg-section: #0b1120; /* Slightly lighter dark for sections */
+    --bg-card: #0f172a; /* Card background color */
+    --accent-1: #4f46e5; /* Primary accent (indigo) */
+    --accent-2: #22c55e; /* Secondary accent (green) */
+    --text-main: #e5e7eb; /* Main text color (light gray) */
+    --text-muted: #9ca3af; /* Muted text color */
+    --border-subtle: rgba(148, 163, 184, 0.4); /* Subtle border color */
+    --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.9); /* Soft strong shadow for cards */
+    --radius-lg: 18px; /* Large border radius */
+    --radius-md: 12px; /* Medium border radius */
+    --radius-pill: 999px; /* Pill shape radius */
+    --transition-fast: 0.2s ease; /* Fast transition */
+    --transition-med: 0.3s ease; /* Medium transition */
+    --container-width: 1120px; /* Max width for containers */
+}
+
+/* Apply base styles to html element */
+html {
+    scroll-behavior: smooth; /* Enable smooth scrolling for internal links */
+}
+
+/* Global base for body */
+body {
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    font-family: 'Poppins', sans-serif; /* Use Poppins font for all text */
+    background: radial-gradient(circle at top, #0f172a 0, #020617 60%, #000 100%); /* Subtle gradient background */
+    color: var(--text-main); /* Set main text color */
+    line-height: 1.6; /* Comfortable line-height */
+}
+
+/* Reset default styles for lists */
+ul {
+    margin: 0; /* Remove margin */
+    padding: 0; /* Remove padding */
+    list-style: none; /* Remove bullets */
+}
+
+/* Reset default margin for headings and paragraphs */
+h1, h2, h3, h4, p {
+    margin: 0; /* Remove default margins */
+}
+
+/* Style all anchor tags */
+a {
+    color: var(--accent-1); /* Use primary accent color for links */
+    text-decoration: none; /* Remove underline */
+}
+
+/* Hover state for anchor tags */
+a:hover {
+    color: var(--accent-2); /* Change color to secondary accent on hover */
+}
+
+/* ======================= LAYOUT HELPERS ======================= */
+/* Centered container with max width */
+.container {
+    max-width: var(--container-width); /* Use defined max width */
+    margin: 0 auto; /* Center horizontally */
+    padding: 0 1.5rem; /* Add side padding */
+}
+
+/* Generic section spacing */
+.section {
+    padding: 5rem 0; /* Top and bottom padding */
+}
+
+/* Section header styling */
+.section-header {
+    text-align: center; /* Center align header text */
+    margin-bottom: 3rem; /* Space below header */
+}
+
+/* Main section title */
+.section-title {
+    font-size: 2.2rem; /* Larger font size */
+    font-weight: 600; /* Semi-bold weight */
+    letter-spacing: 0.05em; /* Slight letter spacing */
+    text-transform: uppercase; /* Uppercase letters */
+}
+
+/* Subtitle text under section title */
+.section-subtitle {
+    margin-top: 0.75rem; /* Space above subtitle */
+    max-width: 650px; /* Limit width for readability */
+    margin-left: auto; /* Center horizontally (left) */
+    margin-right: auto; /* Center horizontally (right) */
+    color: var(--text-muted); /* Muted text color */
+    font-size: 0.95rem; /* Slightly smaller font */
+}
+
+/* ======================= HEADER & NAVBAR ======================= */
+/* Styling for sticky site header */
+.site-header {
+    position: sticky; /* Sticks to top on scroll */
+    top: 0; /* Align to top */
+    z-index: 50; /* Place above other content */
+    backdrop-filter: blur(14px); /* Apply blur for glass effect */
+    background: linear-gradient(
+        to bottom,
+        rgba(15, 23, 42, 0.9),
+        rgba(15, 23, 42, 0.7),
+        transparent
+    ); /* Gradient background that fades out */
+    border-bottom: 1px solid rgba(148, 163, 184, 0.2); /* Subtle bottom border */
+}
+
+/* Container within header for nav layout */
+.nav-container {
+    display: flex; /* Use flexbox */
+    align-items: center; /* Vertically center items */
+    justify-content: space-between; /* Space between brand and nav */
+    padding: 0.85rem 1.5rem; /* Vertical and horizontal padding */
+}
+
+/* Brand container (name and tagline) */
+.brand {
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Stack name and tagline vertically */
+}
+
+/* Brand name styling */
+.brand-name {
+    font-size: 1.25rem; /* Slightly larger text */
+    font-weight: 600; /* Semi-bold weight */
+    color: #e5e7eb; /* Light gray color */
+}
+
+/* Brand tagline styling */
+.brand-tagline {
+    font-size: 0.8rem; /* Smaller text size */
+    color: var(--text-muted); /* Muted color */
+}
+
+/* Navbar container */
+.navbar {
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center vertically */
+    gap: 1.5rem; /* Space between nav items and socials */
+}
+
+/* Nav links list */
+.nav-links {
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center vertically */
+    gap: 1.2rem; /* Horizontal gap between links */
+}
+
+/* Nav link styling */
+.nav-link {
+    font-size: 0.9rem; /* Smaller text */
+    color: var(--text-muted); /* Muted color */
+    text-transform: uppercase; /* Uppercase text */
+    letter-spacing: 0.09em; /* Extra letter spacing */
+    font-weight: 500; /* Medium weight */
+    position: relative; /* Position for underline pseudo-element */
+}
+
+/* Underline effect on nav link hover */
+.nav-link::after {
+    content: ""; /* Empty pseudo element */
+    position: absolute; /* Absolute positioning under text */
+    left: 0; /* Align left */
+    bottom: -0.35rem; /* Slightly below text baseline */
+    width: 0%; /* Start with no width */
+    height: 2px; /* Thin underline */
+    background: linear-gradient(to right, var(--accent-1), var(--accent-2)); /* Gradient underline */
+    transition: width var(--transition-med); /* Animate width */
+}
+
+/* Hover or active state of nav link underline */
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%; /* Expand underline fully */
+}
+
+/* Active nav link text color */
+.nav-link.active {
+    color: #e5e7eb; /* Brighter color for active link */
+}
+
+/* Social icons container in nav */
+.nav-socials {
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center vertically */
+    gap: 0.6rem; /* Small gap between icons */
+}
+
+/* Icon anchor wrapper */
+.icon-link {
+    display: inline-flex; /* Flex display for centering */
+}
+
+/* Circular icon background */
+.icon-circle {
+    width: 32px; /* Fixed width */
+    height: 32px; /* Fixed height */
+    border-radius: 50%; /* Make circle */
+    display: flex; /* Use flexbox for centering */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    font-size: 0.8rem; /* Text size inside circle */
+    font-weight: 600; /* Bold text */
+    background: radial-gradient(circle, #1f2937 0%, #020617 100%); /* Gradient background */
+    border: 1px solid rgba(148, 163, 184, 0.5); /* Subtle border */
+    color: var(--text-main); /* Text color */
+    transition: transform var(--transition-fast), border-color var(--transition-fast); /* Hover transitions */
+}
+
+/* Hover state for icon circle */
+.icon-circle:hover {
+    transform: translateY(-1px) scale(1.04); /* Slight upward move and scale */
+    border-color: var(--accent-1); /* Change border color on hover */
+}
+
+/* Hamburger toggle button (hidden on desktop) */
+.nav-toggle {
+    display: none; /* Hidden by default on large screens */
+    flex-direction: column; /* Stack bars vertically */
+    gap: 4px; /* Space between bars */
+    background: transparent; /* No background */
+    border: none; /* Remove border */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+/* Individual bars inside toggle */
+.nav-toggle .bar {
+    width: 20px; /* Bar width */
+    height: 2px; /* Bar height */
+    background-color: #e5e7eb; /* Bar color */
+}
+
+/* ======================= HERO SECTION ======================= */
+/* Hero full-width section */
+.hero-section {
+    padding: 5rem 0 4rem; /* Top and bottom padding */
+}
+
+/* Grid layout within hero */
+.hero-grid {
+    display: grid; /* Use CSS grid */
+    grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.3fr); /* Two-column layout with ratio */
+    gap: 3rem; /* Gap between columns */
+    align-items: center; /* Vertically align items */
+}
+
+/* Left hero text column */
+.hero-text {
+    max-width: 640px; /* Limit width for readability */
+}
+
+/* Upper eyebrow text in hero */
+.hero-eyebrow {
+    color: var(--accent-2); /* Green accent color */
+    text-transform: uppercase; /* Uppercase text */
+    letter-spacing: 0.16em; /* Large letter spacing */
+    font-size: 0.75rem; /* Small font size */
+    margin-bottom: 0.9rem; /* Space below eyebrow text */
+}
+
+/* Main hero title text */
+.hero-title {
+    font-size: 2.6rem; /* Large font size */
+    line-height: 1.2; /* Tight line-height */
+    margin-bottom: 1rem; /* Space below title */
+}
+
+/* Secondary hero description */
+.hero-subtitle {
+    color: var(--text-muted); /* Muted color */
+    font-size: 0.98rem; /* Slightly small font */
+    max-width: 540px; /* Width constraint */
+    margin-bottom: 1.8rem; /* Space below subtitle */
+}
+
+/* Container for hero buttons */
+.hero-actions {
+    display: flex; /* Use flexbox */
+    gap: 1rem; /* Space between buttons */
+    margin-bottom: 1.6rem; /* Space below button group */
+}
+
+/* Hero meta information row */
+.hero-meta {
+    display: flex; /* Use flexbox */
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    gap: 0.9rem; /* Gap between items */
+    font-size: 0.8rem; /* Smaller text */
+    color: var(--text-muted); /* Muted color */
+}
+
+/* Right hero profile card */
+.hero-card {
+    background: radial-gradient(circle at top left, #111827, #020617); /* Gradient background */
+    border-radius: 26px; /* Rounded corners */
+    padding: 1.5rem 1.4rem; /* Inner padding */
+    border: 1px solid rgba(148, 163, 184, 0.35); /* Border color */
+    box-shadow: var(--shadow-soft); /* Apply drop shadow */
+    position: relative; /* Position for possible future overlays */
+}
+
+/* Circular avatar area on hero card */
+.hero-avatar {
+    width: 80px; /* Width of circle */
+    height: 80px; /* Height of circle */
+    border-radius: 50%; /* Make perfect circle */
+    background: conic-gradient(from 120deg, #4f46e5, #22c55e, #06b6d4, #4f46e5); /* Colorful conic gradient */
+    display: flex; /* Use flexbox for centering inner content */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    margin-bottom: 1rem; /* Space below avatar */
+}
+
+/* Initials text inside avatar */
+.hero-initials {
+    background: #020617; /* Dark background behind initials */
+    border-radius: 50%; /* Circle behind initials */
+    width: 68px; /* Inner circle width */
+    height: 68px; /* Inner circle height */
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    font-weight: 600; /* Bold text */
+    font-size: 1rem; /* Font size of initials */
+    color: #e5e7eb; /* Light text color */
+}
+
+/* Name on hero card */
+.hero-name {
+    font-size: 1.35rem; /* Font size */
+    margin-bottom: 0.15rem; /* Small space below */
+}
+
+/* Role text on hero card */
+.hero-role {
+    font-size: 0.9rem; /* Smaller text size */
+    color: var(--text-muted); /* Muted color */
+    margin-bottom: 0.9rem; /* Space below role */
+}
+
+/* Summary paragraph on hero card */
+.hero-summary {
+    font-size: 0.9rem; /* Text size */
+    color: var(--text-main); /* Main text color */
+    margin-bottom: 1.1rem; /* Bottom margin */
+}
+
+/* Container for quick contact chips in hero card */
+.hero-contact-quick {
+    display: flex; /* Use flexbox */
+    flex-wrap: wrap; /* Allow wrapping */
+    gap: 0.6rem; /* Space between chips */
+}
+
+/* ======================= BUTTONS & CHIPS ======================= */
+/* Base button style */
+.btn {
+    border-radius: var(--radius-pill); /* Pill-shaped corners */
+    padding: 0.6rem 1.4rem; /* Vertical and horizontal padding */
+    border: 1px solid transparent; /* Transparent border by default */
+    font-size: 0.9rem; /* Font size */
+    font-weight: 500; /* Medium weight */
+    cursor: pointer; /* Pointer cursor */
+    transition: background var(--transition-med), color var(--transition-med), border-color var(--transition-med), transform var(--transition-fast); /* Button transitions */
+}
+
+/* Primary solid button style */
+.primary-btn {
+    background: linear-gradient(to right, var(--accent-1), #6366f1); /* Gradient background */
+    color: #f9fafb; /* Light text */
+}
+
+/* Hover state for primary button */
+.primary-btn:hover {
+    transform: translateY(-1px); /* Slight upward motion */
+}
+
+/* Ghost (outline) button style */
+.ghost-btn {
+    background: transparent; /* No background */
+    border-color: rgba(148, 163, 184, 0.7); /* Border color */
+    color: var(--text-main); /* Text color */
+}
+
+/* Hover state for ghost button */
+.ghost-btn:hover {
+    border-color: var(--accent-1); /* Change border color */
+}
+
+/* Contact chip style (small pill links) */
+.contact-chip {
+    display: inline-flex; /* Flex display */
+    align-items: center; /* Align vertically */
+    justify-content: center; /* Align horizontally */
+    padding: 0.4rem 0.9rem; /* Padding */
+    border-radius: var(--radius-pill); /* Pill shape */
+    border: 1px solid rgba(148, 163, 184, 0.4); /* Subtle border */
+    font-size: 0.8rem; /* Small font size */
+    color: var(--text-main); /* Text color */
+}
+
+/* ======================= ABOUT SECTION ======================= */
+/* About section background color */
+.about-section {
+    background: var(--bg-section); /* Use section background */
+}
+
+/* About section grid layout */
+.about-grid {
+    display: grid; /* Use grid */
+    grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.2fr); /* Two columns with ratio */
+    gap: 2.5rem; /* Gap between columns */
+}
+
+/* Paragraph styling in about text */
+.about-text p {
+    margin-bottom: 1.1rem; /* Space between paragraphs */
+    color: var(--text-main); /* Main text color */
+    font-size: 0.95rem; /* Slightly smaller font */
+}
+
+/* Sidebar title style */
+.sidebar-title {
+    font-size: 1rem; /* Sidebar title font size */
+    margin-bottom: 1rem; /* Space below */
+    color: var(--text-muted); /* Muted color */
+    text-transform: uppercase; /* Uppercase text */
+    letter-spacing: 0.17em; /* Spaced letters */
+}
+
+/* About sidebar container */
+.about-sidebar {
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Stack cards vertically */
+    gap: 0.9rem; /* Small gap between cards */
+}
+
+/* Generic info card style */
+.info-card {
+    background: var(--bg-card); /* Card background */
+    border-radius: var(--radius-md); /* Rounded corners */
+    padding: 0.9rem 1rem; /* Padding */
+    border: 1px solid rgba(148, 163, 184, 0.4); /* Border color */
+}
+
+/* Title within info card */
+.info-card h4 {
+    font-size: 0.98rem; /* Text size */
+    margin-bottom: 0.2rem; /* Space below title */
+}
+
+/* Meta information text in info card */
+.info-meta {
+    font-size: 0.8rem; /* Small text size */
+    color: var(--text-muted); /* Muted color */
+    margin-bottom: 0.2rem; /* Space below meta */
+}
+
+/* Highlight line in info card */
+.info-highlight {
+    font-size: 0.85rem; /* Slightly small text */
+    color: var(--text-main); /* Main text */
+}
+
+/* ======================= SKILLS SECTION ======================= */
+/* Skills section background */
+.skills-section {
+    background: transparent; /* Transparent to let body gradient show */
+}
+
+/* Grid for skills cards */
+.skills-grid {
+    display: grid; /* Use grid */
+    grid-template-columns: repeat(4, minmax(0, 1fr)); /* 4 equal columns */
+    gap: 1.5rem; /* Gap between skill cards */
+}
+
+/* Individual skill card */
+.skill-card {
+    background: rgba(15, 23, 42, 0.9); /* Slight transparent dark */
+    border-radius: var(--radius-md); /* Rounded corners */
+    padding: 1.2rem 1.1rem; /* Padding */
+    border: 1px solid rgba(148, 163, 184, 0.6); /* Border color */
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.8); /* Drop shadow */
+}
+
+/* Skill card title */
+.skill-card h3 {
+    font-size: 0.98rem; /* Slightly small heading */
+    margin-bottom: 0.7rem; /* Space below heading */
+    text-transform: uppercase; /* Uppercase heading */
+    letter-spacing: 0.17em; /* Spaced letters */
+    color: var(--text-main); /* Main text color */
+}
+
+/* List of skill items */
+.skill-card ul li {
+    font-size: 0.9rem; /* Text size */
+    color: var(--text-muted); /* Muted color */
+    margin-bottom: 0.25rem; /* Space between items */
+}
+
+/* ======================= PROJECTS SECTION ======================= */
+/* Projects section background */
+.projects-section {
+    background: var(--bg-section); /* Section background color */
+}
+
+/* Grid for project cards */
+.cards-grid {
+    display: grid; /* Use grid layout */
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* Two columns */
+    gap: 1.8rem; /* Gap between cards */
+}
+
+/* Individual project card style */
+.project-card {
+    background: var(--bg-card); /* Card background color */
+    border-radius: var(--radius-lg); /* Large rounded corners */
+    padding: 1.6rem 1.5rem; /* Card padding */
+    border: 1px solid var(--border-subtle); /* Border color */
+    box-shadow: var(--shadow-soft); /* Card shadow */
+    position: relative; /* Relative for future badges/overlays */
+}
+
+/* Project title styling */
+.project-card h3 {
+    font-size: 1.1rem; /* Title font size */
+    margin-bottom: 0.4rem; /* Gap below title */
+}
+
+/* Project meta text (tech stack) */
+.project-meta {
+    font-size: 0.78rem; /* Smaller text size */
+    color: var(--accent-2); /* Accent color */
+    text-transform: uppercase; /* Uppercase text */
+    letter-spacing: 0.15em; /* Spacing letters */
+    margin-bottom: 0.7rem; /* Space below meta */
+}
+
+/* Project description paragraph */
+.project-card p {
+    font-size: 0.9rem; /* Font size */
+    color: var(--text-muted); /* Text color */
+}
+
+/* ======================= EXPERIENCE SECTION ======================= */
+/* Experience section background color */
+.experience-section {
+    background: transparent; /* Transparent background */
+}
+
+/* Container for experience cards stacked vertically */
+.experience-timeline {
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Stack vertically */
+    gap: 1.4rem; /* Gap between cards */
+}
+
+/* Individual experience card style */
+.experience-card {
+    background: var(--bg-card); /* Card background color */
+    border-radius: var(--radius-lg); /* Rounded corners */
+    padding: 1.4rem 1.4rem; /* Card padding */
+    border: 1px solid var(--border-subtle); /* Border color */
+    box-shadow: var(--shadow-soft); /* Shadow for depth */
+}
+
+/* Experience card heading */
+.experience-card h3 {
+    font-size: 1.05rem; /* Heading font size */
+    margin-bottom: 0.2rem; /* Gap below heading */
+}
+
+/* Meta text under experience heading */
+.experience-meta {
+    font-size: 0.8rem; /* Small text size */
+    color: var(--accent-2); /* Accent color */
+    text-transform: uppercase; /* Uppercase text */
+    letter-spacing: 0.17em; /* Letter spacing */
+    margin-bottom: 0.7rem; /* Space below meta */
+}
+
+/* Experience paragraph description */
+.experience-card p {
+    font-size: 0.9rem; /* Text size */
+    color: var(--text-muted); /* Text color */
+    margin-bottom: 0.7rem; /* Space below paragraph */
+}
+
+/* Bulleted highlight list inside experience card */
+.experience-highlights {
+    padding-left: 1.1rem; /* Indent for bullets */
+}
+
+/* Individual highlight item */
+.experience-highlights li {
+    font-size: 0.85rem; /* Small text size */
+    color: var(--text-main); /* Main text color */
+    list-style: disc; /* Use disc bullets */
+    margin-bottom: 0.25rem; /* Space between bullets */
+}
+
+/* ======================= ACHIEVEMENTS SECTION ======================= */
+/* Achievements section background color */
+.achievements-section {
+    background: var(--bg-section); /* Section background */
+}
+
+/* Grid for achievements and certifications */
+.achievements-grid {
+    display: grid; /* Use grid */
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* Two columns */
+    gap: 1.6rem; /* Gap between columns */
+}
+
+/* Individual column style */
+.achievement-column {
+    background: var(--bg-card); /* Card background color */
+    border-radius: var(--radius-md); /* Rounded corners */
+    padding: 1.2rem 1.2rem; /* Padding */
+    border: 1px solid var(--border-subtle); /* Border color */
+}
+
+/* Heading inside achievements column */
+.achievement-column h3 {
+    font-size: 0.98rem; /* Text size */
+    margin-bottom: 0.7rem; /* Gap below heading */
+    text-transform: uppercase; /* Uppercase text */
+    letter-spacing: 0.17em; /* Letter spacing */
+}
+
+/* List item styling in achievements column */
+.achievement-column ul li {
+    font-size: 0.9rem; /* Text size */
+    color: var(--text-main); /* Text color */
+    margin-bottom: 0.35rem; /* Gap between list items */
+}
+
+/* ======================= CONTACT SECTION ======================= */
+/* Contact section background color */
+.contact-section {
+    background: transparent; /* Transparent background */
+}
+
+/* Grid for contact details and message */
+.contact-grid {
+    display: grid; /* Use grid */
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.6fr); /* Two columns with ratio */
+    gap: 2.2rem; /* Gap between columns */
+}
+
+/* Contact details column */
+.contact-details {
+    background: var(--bg-card); /* Card background */
+    border-radius: var(--radius-md); /* Rounded corners */
+    padding: 1.4rem 1.3rem; /* Padding */
+    border: 1px solid var(--border-subtle); /* Border color */
+}
+
+/* Header in contact details */
+.contact-details h3 {
+    font-size: 1rem; /* Text size */
+    margin-bottom: 0.8rem; /* Gap below heading */
+}
+
+/* List of contact entries */
+.contact-list li {
+    display: flex; /* Use flexbox for line */
+    flex-direction: column; /* Stack label and value vertically */
+    margin-bottom: 0.6rem; /* Gap between contact items */
+    font-size: 0.9rem; /* Text size */
+}
+
+/* Label span in contact list */
+.contact-list span {
+    color: var(--text-muted); /* Muted label color */
+    font-size: 0.8rem; /* Smaller text size */
+    margin-bottom: 0.1rem; /* Small space below label */
+}
+
+/* Message column in contact grid */
+.contact-message {
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: center; /* Center content vertically */
+    gap: 1rem; /* Space between elements */
+}
+
+/* Heading in contact message column */
+.contact-message h3 {
+    font-size: 1.1rem; /* Text size */
+}
+
+/* Paragraph in contact message column */
+.contact-message p {
+    font-size: 0.9rem; /* Text size */
+    color: var(--text-muted); /* Text color */
+    max-width: 480px; /* Limit width */
+}
+
+/* ======================= FOOTER ======================= */
+/* Footer styling */
+.site-footer {
+    border-top: 1px solid rgba(148, 163, 184, 0.35); /* Top border */
+    padding: 1.5rem 0 1.8rem; /* Padding */
+    background: radial-gradient(circle at top, #020617, #020617); /* Dark gradient background */
+}
+
+/* Footer content layout */
+.footer-content {
+    text-align: center; /* Centered text */
+    font-size: 0.8rem; /* Small font size */
+    color: var(--text-muted); /* Muted color */
+}
+
+/* Additional footer note text */
+.footer-note {
+    margin-top: 0.4rem; /* Space above note */
+}
+
+/* ======================= SCROLL TO TOP BUTTON ======================= */
+/* Floating scroll-top button */
+.scroll-top {
+    position: fixed; /* Fixed position relative to viewport */
+    right: 1.4rem; /* Distance from right */
+    bottom: 1.4rem; /* Distance from bottom */
+    width: 38px; /* Width of button */
+    height: 38px; /* Height of button */
+    border-radius: 999px; /* Fully rounded */
+    border: 1px solid rgba(148, 163, 184, 0.8); /* Border color */
+    background: radial-gradient(circle, #1f2937, #020617); /* Gradient background */
+    color: #e5e7eb; /* Text color */
+    cursor: pointer; /* Pointer cursor */
+    display: none; /* Hidden by default */
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+    font-size: 1rem; /* Font size of arrow */
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.85); /* Shadow for floating effect */
+    z-index: 40; /* Place above content */
+}
+
+/* Visible state for scroll-top button */
+.scroll-top.visible {
+    display: inline-flex; /* Show as inline-flex when visible */
+}
+
+/* ======================= RESPONSIVE STYLES ======================= */
+/* Medium screens (tablets and small laptops) */
+@media (max-width: 960px) {
+    .hero-grid {
+        grid-template-columns: minmax(0, 1fr); /* Single column layout for hero */
+    }
+
+    .hero-card {
+        order: -1; /* Move hero card above hero text on smaller screens */
+    }
+
+    .about-grid {
+        grid-template-columns: minmax(0, 1fr); /* Single column layout for about section */
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)); /* Two columns for skills */
+    }
+
+    .cards-grid {
+        grid-template-columns: minmax(0, 1fr); /* Single column for projects */
+    }
+
+    .achievements-grid {
+        grid-template-columns: minmax(0, 1fr); /* Single column for achievements */
+    }
+
+    .contact-grid {
+        grid-template-columns: minmax(0, 1fr); /* Single column for contact section */
+    }
+}
+
+/* Small screens (mobile phones) */
+@media (max-width: 768px) {
+    .nav-links {
+        position: absolute; /* Position relative to viewport/parent */
+        top: 100%; /* Below header */
+        right: 0; /* Align to right */
+        flex-direction: column; /* Stack nav links vertically */
+        background: #020617; /* Solid dark background */
+        padding: 0.8rem 1.4rem; /* Padding */
+        border-bottom-left-radius: 18px; /* Rounded corner */
+        border-left: 1px solid rgba(148, 163, 184, 0.3); /* Left border */
+        border-bottom: 1px solid rgba(148, 163, 184, 0.3); /* Bottom border */
+        display: none; /* Hidden by default */
+    }
+
+    .nav-links.open {
+        display: flex; /* Show nav links when 'open' class is added */
+    }
+
+    .nav-toggle {
+        display: flex; /* Show hamburger toggle on mobile */
+    }
+
+    .nav-socials {
+        display: none; /* Hide social icons in nav on mobile */
+    }
+
+    .section {
+        padding: 4rem 0; /* Slightly smaller vertical padding */
+    }
+
+    .hero-title {
+        font-size: 2.1rem; /* Reduce hero title font size on mobile */
+    }
+
+    .skills-grid {
+        grid-template-columns: minmax(0, 1fr); /* Single column for skills */
+    }
+}
